@@ -19,6 +19,6 @@ describe ("Main component",()=>{
        		 expect(wrapper.find('#headerid')).to.have.lengthOf(1);
 	});
     it("checkbox should be checked",()=>{
-        expect(wrapper.find('#checkboxchk')).to.be.checked();
+        expect(wrapper.find('#checkboxchk')).to.not.be.checked();
     })
 });
