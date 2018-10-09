@@ -9,12 +9,16 @@ configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme());
 
 describe ("Main component",()=>{
-	it("should an object",()=>{
-          const wrapper=mount(<Main/>);
-		 expect(wrapper).to.be.a('object');
+    const wrapper=mount(<Main/>);
+	it("should an object and not to be empty",()=>{          
+		  expect(wrapper).
+          to.be.a('object').
+          to.not.be.blank();
 	});
-    it("should have class name",()=>{
-          const wrapper=mount(<Main/>);
-		 expect(wrapper.find('h1')).to.have.className('heading');
+    it("should have Header",()=>{
+       		 expect(wrapper.find('#headerid')).to.have.lengthOf(1);
 	});
+    it("checkbox should be checked",()=>{
+        expect(wrapper.find('#checkboxchk')).to.be.checked();
+    })
 });
