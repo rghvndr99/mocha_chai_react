@@ -4,22 +4,22 @@ class Main extends Component {
     constructor(props){
         super(props);
         this.state={
-            isSeachAcross:false
+            isSearchAcross:false
           }
+        this.handleCheck=this.handleCheck.bind(this);
           }
     handleCheck=(e)=>{
         this.setState({
-            isSeachAcross:e.currentTarget.checked
-        })
-        
+              isSearchAcross:e.currentTarget.checked
+        })        
     }
 
   render() {
          return <div className="heading">
-                 <h1 id="headerid">Filter Users</h1>
-                 <input type="checkbox" id="checkboxchk" onChange={this.handleCheck.bind(this)} /> <span>Filter in all props</span>
+                 <h1 id="headerid">Filter Colors</h1>
+                 <input type="checkbox" checked={this.state.isSearchAcross} id="checkboxchk" onChange={this.handleCheck} /> <span>Filter in all props</span>
                  
-                 <Filter isSeachAcross={this.state.isSeachAcross}/>
+                 <Filter isSearchAcross={this.state.isSearchAcross}/>
             </div>
   }
 }

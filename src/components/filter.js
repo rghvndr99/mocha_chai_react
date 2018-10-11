@@ -1,61 +1,35 @@
 import React, { Component } from "react";
+import colorList from "../../mockdata/mock.js";
 class Filter extends Component {
     constructor(props){
         super(props);
          this.state={
-             colorList:[
-                    {
-                        color: "red",
-                        value: "#f00"
-                    },
-                    {
-                        color: "green",
-                        value: "#0f0"
-                    },
-                    {
-                        color: "blue",
-                        value: "#00f"
-                    },
-                    {
-                        color: "cyan",
-                        value: "#0ff"
-                    },
-                    {
-                        color: "magenta",
-                        value: "#f0f"
-                    },
-                    {
-                        color: "yellow",
-                        value: "#ff0"
-                    },
-                    {
-                        color: "black",
-                        value: "#000"
-                    }
-              ],
-             filteredList:[]
+             colorList:colorList,
+             filteredList:[],
+             isFromSearch:false
            }
           }
     handleFilter=(e)=>{
         let currentElement=e.target.value;
         let {colorList}=this.state;
-        let {isSeachAcross}=this.props;
+        let {isSearchAcross}=this.props;
         let newFilteredColor=colorList.filter((item)=>{
-            return isSeachAcross?(item.color.indexOf(currentElement)>-1 ||item.value.indexOf(currentElement)>-1):(item.color.indexOf(currentElement)>-1);
+            return isSearchAcross?(item.color.indexOf(currentElement)>-1 ||item.value.indexOf(currentElement)>-1):(item.color.indexOf(currentElement)>-1);
         });
         
         this.setState({
-            filteredList:newFilteredColor
+            filteredList:newFilteredColor,
+            isFromSearch:true
         });
     }
 
     
   render() {
-      const {filteredList,colorList}=this.state;
-      let {isSeachAcross}=this.props;
-      const colorlistarr=filteredList.length?filteredList:colorList;
+      const {filteredList,colorList,isFromSearch}=this.state;
+      let {isSearchAcross}=this.props;
+      const colorlistarr=isFromSearch?filteredList:colorList;
       const ListOfFilteredColor=colorlistarr.map((item)=>{
-              const itemVal=isSeachAcross?(item.color+' '+item.value): item.color;
+     const itemVal=isSearchAcross?(item.color+' '+item.value): item.color;
           return <li key={item.value}>{itemVal}</li>
       });
          return <div>
