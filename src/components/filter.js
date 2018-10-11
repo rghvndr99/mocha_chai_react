@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import colorList from "../../mockdata/mock.js";
+import ColorListing from "./colorlisting.js";
 class Filter extends Component {
     constructor(props){
         super(props);
@@ -29,13 +30,13 @@ class Filter extends Component {
       let {isSearchAcross}=this.props;
       const colorlistarr=isFromSearch?filteredList:colorList;
       const ListOfFilteredColor=colorlistarr.map((item)=>{
-     const itemVal=isSearchAcross?(item.color+' '+item.value): item.color;
-          return <li key={item.value}>{itemVal}</li>
+         const itemVal=isSearchAcross?(item.color+' '+item.value): item.color;
+         return <ColorListing key={item.value} colorObj={itemVal}/>
       });
          return <div>
                   <input type="text" className="txt-filter" placeholder="search" onChange={this.handleFilter.bind(this)} />
                   <ul>
-          {ListOfFilteredColor}
+                     {ListOfFilteredColor}
                   </ul>
                </div>
   }
